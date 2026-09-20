@@ -2,7 +2,9 @@ import string
 import random
 import sys
 import subprocess
+import argparse
 from .constants import MODEL
+from model.arguments import Arguments
 
 def random_string() ->str:
     caracteres = string.ascii_letters + string.digits 
@@ -15,3 +17,29 @@ def clear_screen():
 
 def stop_model():
     subprocess.run(["ollama", "stop", MODEL])
+
+def process_args() -> Arguments:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "project",
+        nargs="?",
+        default=".",
+        help="Ruta del proyecto"
+    )
+    parser.add_argument(
+        "-p", "--project",
+        dest="project_option",
+        help="Ruta del project"
+    )
+    parser.add_argument(
+        "-m", "--model",
+        default=MODEL,
+        help="Modelo de Ollama"
+    )
+    args = parser.parse_args()
+    project = args.project_option or args.project
+    if not project:
+        parser.error("Debes especificar el proyecto")
+    print(f"Proyecto: {project}")
+    print(f"Modelo: {args.model}")
+    return Arguments(project=project, model=args.model)

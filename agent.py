@@ -1,6 +1,7 @@
 from libs.colors import RED, YELLOW, RESET
-from libs.constants import MODEL, PROMPT, THREAD_ID
+from libs.constants import PROMPT, THREAD_ID
 from libs.methods import clear_screen, stop_model
+from model.arguments import Arguments
 
 from tools.tools import tools
 
@@ -11,8 +12,9 @@ from langgraph.types import Checkpointer
 
 class Agent:
 
-    def __init__(self):
-        self.llm = ChatOllama(model=MODEL)
+    def __init__(self, model: str):
+        self.llm = ChatOllama(model=model)
+        self.model = model
         self.config = {"configurable": {"thread_id": THREAD_ID}}
 
     def run_agent(self, user_input: str, check_pointer: Checkpointer):
@@ -28,7 +30,7 @@ class Agent:
         )
         stop_model()
         resp_final = result["messages"][-1].content
-        print(f"{YELLOW}{MODEL} Respuesta {RESET}: {resp_final}")
+        print(f"{YELLOW}{self.model} Respuesta {RESET}: {resp_final}")
 
     def print_bye(self, message="adiós", tipo_color=RED):
         emoji = "👋"
@@ -40,7 +42,7 @@ class Agent:
             print("Escribe 'exit' para salir")
             while True:
                 try:
-                    user_input = input(f"{YELLOW}{user_name} {MODEL} {RESET} > ")
+                    user_input = input(f"{YELLOW}{user_name} {self.model} {RESET} > ")
                 except KeyboardInterrupt as e:
                     self.print_bye("Saliendo por interrupción")
                     break
