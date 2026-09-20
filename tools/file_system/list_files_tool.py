@@ -40,16 +40,14 @@ def list_files(directory_path: str) -> str:
             print("📁 Carpetas:")
             for dir_item in sorted(dirs):
                 full_path = os.path.join(directory_path)
-                depth = len(full_path.strip(os.sep)) - len(directory_path.strip(os.sep))
-                indent = "  │   " * depth
+                indent = "  │   " 
                 print(f"{indent}├── {dir_item}/")
         
         if files:
             print("\n📄 Archivos:")
             for file_item in sorted(files):
                 full_path = os.path.join(directory_path, file_item)
-                depth = len(full_path.strip(os.sep)) - len(directory_path.strip(os.sep))
-                indent = "  │   " * depth
+                indent = "  │   " 
                 size = os.path.getsize(full_path) if os.path.exists(full_path) else 0
                 print(f"{indent}├── {file_item} ({size} bytes)")
         
