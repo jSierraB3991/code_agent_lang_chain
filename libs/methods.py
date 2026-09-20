@@ -2,6 +2,7 @@ import string
 import random
 import sys
 import subprocess
+from .constants import MODEL
 
 def random_string() ->str:
     caracteres = string.ascii_letters + string.digits 
@@ -11,3 +12,6 @@ def random_string() ->str:
 
 def clear_screen():
     subprocess.run(['cls'] if sys.platform == 'win32' else ['clear'])
+
+def stop_model():
+    subprocess.run(["ollama", "stop", MODEL])

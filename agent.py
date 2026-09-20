@@ -1,6 +1,6 @@
 from libs.colors import RED, YELLOW, RESET
 from libs.constants import MODEL, PROMPT, THREAD_ID
-from libs.methods import clear_screen
+from libs.methods import clear_screen, stop_model
 
 from tools.tools import tools
 
@@ -15,9 +15,6 @@ class Agent:
         self.llm = ChatOllama(model=MODEL)
         self.config = {"configurable": {"thread_id": THREAD_ID}}
 
-        with SqliteSaver.from_conn_string("checkpoints.sqlite") as checkpointer:
-            self.run_agent(user_input="Quiero que te presentes y me saludes, en caso de no saber esto datos, quiero que me los pidas", check_pointer=checkpointer)
-
     def run_agent(self, user_input: str, check_pointer: Checkpointer):
         executor = create_agent(
             model=self.llm, 
@@ -29,8 +26,9 @@ class Agent:
             {"messages": [("user", user_input)]}, 
             config=self.config
         )
+        stop_model()
         resp_final = result["messages"][-1].content
-        print(f"{MODEL} Respuesta: {resp_final}")
+        print(f"{YELLOW}{MODEL} Respuesta {RESET}: {resp_final}")
 
     def print_bye(self, message="adiós", tipo_color=RED):
         emoji = "👋"
@@ -42,7 +40,7 @@ class Agent:
             print("Escribe 'exit' para salir")
             while True:
                 try:
-                    user_input = input(f"{user_name} {MODEL} > ")
+                    user_input = input(f"{YELLOW}{user_name} {MODEL} {RESET} > ")
                 except KeyboardInterrupt as e:
                     self.print_bye("Saliendo por interrupción")
                     break
