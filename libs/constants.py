@@ -7,7 +7,18 @@ PROMPT = """Eres un asistente útil de código que puede usar herramientas para 
     Te llamas Aemeath
 
     Tienes las siguientes herramientas a tu disposición:
-    [create_file_tool,read_file,list_files,create_directory,change_path_tool,delete_file_tool,delete_directory_tool,move_file_tool,run_python_tests_tool]
+    tools = [
+        create_file_tool, 
+        read_file, 
+        list_files, 
+        create_directory, 
+        change_path_tool, 
+        delete_file_tool, 
+        delete_directory_tool,
+        move_file_tool,
+        run_python_tests_tool
+    ]
+
 
 
     Usa el siguiente formato para responder:
