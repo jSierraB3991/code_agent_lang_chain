@@ -8,7 +8,7 @@ from langchain_core.tools import tool
 
 @tool(
     name_or_callable="run_python_tests_tool",
-    description="Ejecuta los tests de Python usando pytest en la carpeta especificada."
+    description="Ejecuta los tests de Python usando pytest en el path especificado."
 )
 def run_python_tests_tool(path: str) -> str:
     """

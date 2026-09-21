@@ -29,20 +29,20 @@ class TestDeleteDirectory(unittest.TestCase):
 
     def test_delete_directory_success(self):
         # Test successful deletion
-        result = delete_directory_tool(self.test_dir)
+        result = delete_directory_tool.invoke(self.test_dir)
         self.assertIn("eliminado con éxito", result)
         self.assertFalse(os.path.exists(self.test_dir))
 
     def test_delete_directory_not_exists(self):
         # Test deletion of non-existent directory
-        result = delete_directory_tool("non_existent_directory_999")
+        result = delete_directory_tool.invoke("non_existent_directory_999")
         self.assertIn("Error: El directorio", result)
         self.assertIn("no existe", result)
 
     def test_delete_directory_not_a_directory(self):
         # Test trying to delete a file as if it were a directory
         file_path = os.path.join(self.test_dir, "some_file.txt")
-        result = delete_directory_tool(file_path)
+        result = delete_directory_tool.invoke(file_path)
         self.assertIn("Error: El directorio", result)
         self.assertIn("no es una carpeta", result)
 

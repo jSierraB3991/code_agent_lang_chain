@@ -2,7 +2,7 @@ import subprocess
 import os
 from langchain_core.tools import tool
 
-@tool(name_or_callable="run_go_tests_tool", description="Herramienta para poder correr los test en proyectos de golang")
+@tool(name_or_callable="run_go_tests_tool", description="Herramienta para poder correr los test en proyectos de golang, en el path especificado")
 def run_go_tests_tool(path):
     if not os.path.exists(path):
         print(f"Error: El directorio {path} no existe.")

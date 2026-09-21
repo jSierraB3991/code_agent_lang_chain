@@ -1,7 +1,6 @@
 from libs.colors import RED, YELLOW, RESET
 from libs.constants import PROMPT, THREAD_ID
 from libs.methods import clear_screen, stop_model
-from model.arguments import Arguments
 
 from tools.tools import tools
 
