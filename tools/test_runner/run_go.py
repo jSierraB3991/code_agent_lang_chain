@@ -11,7 +11,23 @@ def run_go_tests_tool(path):
     print(f"Ejecutando tests de Go en: {path}")
     try:
         # Ejecuta 'go test ./...' en el directorio especificado
-        subprocess.run(["go", "test", "./..."], cwd=path, check=False)
+        result = subprocess.run(["go", "test", "./..."], cwd=path, check=False)
+        output = []
+        
+        if result.stdout:
+            output.append(result.stdout)
+
+        if result.stderr:
+            output.append(result.stderr)
+
+        if result.returncode == 0:
+            output.append("Tests de Python: PASADOS")
+        else:
+            output.append(
+                f"Tests de Python: FALLARON (exit code: {result.returncode})"
+            )
+
+        return "\n".join(output)
     except FileNotFoundError:
         print("Error: No se pudo ejecutar 'go'. Asegúrate de que Go esté instalado.")
     except subprocess.CalledProcessError as e:
