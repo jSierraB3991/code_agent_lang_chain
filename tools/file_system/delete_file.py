@@ -1,7 +1,7 @@
 import os
 from langchain_core.tools import tool
 
-@tool(name_or_callable="DeleteFileTool", description="Elimina un archivo del sistema de archivos.")
+@tool(name_or_callable="delete_file_tool", description="Elimina un archivo del sistema de archivos.")
 def delete_file_tool(file_path: str) -> str:
     if os.path.isfile(file_path):
         os.remove(file_path)

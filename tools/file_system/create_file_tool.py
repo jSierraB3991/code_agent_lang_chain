@@ -1,6 +1,6 @@
 from langchain_core.tools import tool
 
-@tool
+@tool(name_or_callable="create_file_tool", description="Crea archivo en el path, con el contenido")
 def create_file_tool(filename: str, content: str) -> str:
     """
     Útil para crear un archivo de texto en el sistema. 

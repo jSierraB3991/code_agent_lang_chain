@@ -3,8 +3,8 @@ import time
 from langchain_core.tools import tool
 
 
-@tool(name_or_callable="create_directory", description="Crea una nueva carpeta en la ruta especificada.")
-def create_directory(path: str) -> dict:
+@tool(name_or_callable="create_directory_tool", description="Crea una nueva carpeta en la ruta especificada.")
+def create_directory_tool(path: str) -> dict:
     """
     Crea una nueva carpeta en la ruta especificada.
     

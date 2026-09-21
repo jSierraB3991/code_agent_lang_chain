@@ -2,8 +2,8 @@ import os
 from langchain_core.tools import tool
 from libs.constants import dir_no_list, files_no_list
 
-@tool(name_or_callable="ListFilesTool", description="Lista todos los archivos en una carpeta específica")
-def list_files(directory_path: str) -> str:
+@tool(name_or_callable="list_files_tool", description="Lista todos los archivos en una carpeta específica")
+def list_files_tool(directory_path: str) -> str:
     """
     Lista los archivos de una carpeta.
     

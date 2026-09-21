@@ -1,7 +1,7 @@
 from langchain_core.tools import tool
 
-@tool(name_or_callable="FileReaderTool", description="Lee el contenido de un archivo desde el sistema de archivos")
-def read_file(filepath: str) -> str:
+@tool(name_or_callable="read_file_tool", description="Lee el contenido de un archivo desde el sistema de archivos")
+def read_file_tool(filepath: str) -> str:
     """
     Lee el contenido de un archivo y devuelve su texto.
     
