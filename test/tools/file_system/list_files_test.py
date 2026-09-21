@@ -2,7 +2,7 @@
 import unittest
 import os
 import shutil
-from tools.file_system.list_files_tool import list_files
+from tools.file_system.list_files_tool import list_files_tool
 
 class TestListFiles(unittest.TestCase):
     def setUp(self):
@@ -29,25 +29,25 @@ class TestListFiles(unittest.TestCase):
             shutil.rmtree(self.test_dir)
 
     def test_list_files_success(self):
-        result = list_files.invoke(self.test_dir)
+        result = list_files_tool.invoke(self.test_dir)
         # Check if files and directories are in the result
         self.assertIn("file1.txt", result)
         self.assertIn("sub_dir", result)
 
     def test_list_files_not_found(self):
         with self.assertRaises(FileNotFoundError):
-            list_files.invoke(f"{self.test_dir}/file_no_found.txt")
+            list_files_tool.invoke(f"{self.test_dir}/file_no_found.txt")
 
     def test_list_files_is_directory(self):
         with self.assertRaises(IsADirectoryError):
-            list_files.invoke(f"{self.test_dir}/file1.txt")
+            list_files_tool.invoke(f"{self.test_dir}/file1.txt")
             
         # Create a file and try to list it as a directory
         file_path = os.path.join(self.test_dir, "some_file.txt")
         with open(file_path, "w") as f:
             f.write("test")
         with self.assertRaises(IsADirectoryError):
-            list_files.invoke(file_path)
+            list_files_tool.invoke(file_path)
 
 if __name__ == "__main__":
     unittest.main()
