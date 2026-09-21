@@ -3,8 +3,8 @@ import random
 import sys
 import subprocess
 import argparse
-from .constants import MODEL
 from model.arguments import Arguments
+from .constants import MODEL
 
 def random_string() ->str:
     caracteres = string.ascii_letters + string.digits 
@@ -15,8 +15,10 @@ def random_string() ->str:
 def clear_screen():
     subprocess.run(['cls'] if sys.platform == 'win32' else ['clear'])
 
-def stop_model():
-    subprocess.run(["ollama", "stop", MODEL])
+def stop_model(model: str):
+    #subprocess.run(["ollama", "stop", model])
+    print(f"Stop model {model}")
+
 
 def process_args() -> Arguments:
     parser = argparse.ArgumentParser()

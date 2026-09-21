@@ -27,7 +27,7 @@ class Agent:
             {"messages": [("user", user_input)]}, 
             config=self.config
         )
-        stop_model()
+        stop_model(self.model)
         resp_final = result["messages"][-1].content
         print(f"{YELLOW}{self.model} Respuesta {RESET}: {resp_final}")
 

@@ -1,4 +1,4 @@
-MODEL = "gemma4:12b"
+MODEL = "qwen3.5:9b"# "gemma4:12b"
 dir_no_list = ["__pycache__", ".venv", "venv", ".git", ".vscode", "node_modules", "build", "dist"]
 files_no_list = [".env", ".gitignore", "memories.db"]
 
