@@ -2,7 +2,6 @@ import os
 import time
 from langchain_core.tools import tool
 
-
 @tool(name_or_callable="create_directory_tool", description="Crea una nueva carpeta en la ruta especificada.")
 def create_directory_tool(path: str) -> dict:
     """

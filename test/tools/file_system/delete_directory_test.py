@@ -2,7 +2,7 @@
 import unittest
 import os
 import shutil
-from tools.file_system.delete_directory import delete_directory_tool
+from src.tools.file_system.delete_directory import delete_directory_tool
 
 class TestDeleteDirectory(unittest.TestCase):
     def setUp(self):

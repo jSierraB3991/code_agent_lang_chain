@@ -1,7 +1,6 @@
 from pathlib import Path
 from langchain_core.tools import tool
 
-
 @tool(
     name_or_callable="create_file_tool",
     description="Crea un archivo en el path indicado. Si no se especifica path, utiliza el directorio actual."
