@@ -6,7 +6,12 @@ from tools.file_system.delete_file import delete_file_tool
 from tools.file_system.file_reader_tool import read_file_tool
 from tools.file_system.list_files_tool import list_files_tool
 from tools.file_system.move_file import move_file_tool
+
 from tools.test_runner.run_python import run_python_tests_tool
+
+from tools.notificaciones.ask_choice_tool import ask_choice_tool
+from tools.notificaciones.ask_user_tool import ask_user_tool
+from tools.notificaciones.plyer_notifications import show_notification_tool
 
 tools = [
     create_file_tool, 
@@ -17,5 +22,10 @@ tools = [
     delete_file_tool, 
     delete_directory_tool,
     move_file_tool,
-    run_python_tests_tool
+
+    run_python_tests_tool,
+
+    ask_choice_tool,
+    ask_user_tool,
+    show_notification_tool,
 ]

@@ -4,7 +4,7 @@ import sys
 import subprocess
 import argparse
 from model.arguments import Arguments
-from .constants import MODEL
+from .constants import MODEL, THREAD_ID
 
 def random_string() ->str:
     caracteres = string.ascii_letters + string.digits 
@@ -44,4 +44,4 @@ def process_args() -> Arguments:
         parser.error("Debes especificar el proyecto")
     print(f"Proyecto: {project}")
     print(f"Modelo: {args.model}")
-    return Arguments(project=project, model=args.model)
+    return Arguments(project=project, model=args.model, thread_id=THREAD_ID)

@@ -1,4 +1,5 @@
 __pycache__
+.pytest_cache
 checkpoints.sqlite
 checkpoints.sqlite-shm
 checkpoints.sqlite-wal

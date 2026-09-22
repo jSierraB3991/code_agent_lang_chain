@@ -1,5 +1,5 @@
 from libs.colors import RED, YELLOW, RESET
-from libs.constants import PROMPT, THREAD_ID
+from libs.constants import PROMPT
 from libs.methods import clear_screen, stop_model
 
 from tools.tools import tools
@@ -11,10 +11,12 @@ from langgraph.types import Checkpointer
 
 class Agent:
 
-    def __init__(self, model: str):
-        self.llm = ChatOllama(model=model)
+    def __init__(self, model: str, thread_id: str):
+        llm = ChatOllama(model=model, temperature=0)
         self.model = model
-        self.config = {"configurable": {"thread_id": THREAD_ID}}
+        self.llm = llm.model_copy()
+        self.config = {"configurable": {"thread_id": thread_id}}
+
 
     def run_agent(self, user_input: str, check_pointer: Checkpointer):
         executor = create_agent(
@@ -27,9 +29,14 @@ class Agent:
             {"messages": [("user", user_input)]}, 
             config=self.config
         )
+
+        for i, message in enumerate(result["messages"]):
+            print(f"\n===== MESSAGE {i} =====")
+            print("TYPE:", type(message).__name__)
+            print("CONTENT:", repr(message.content))
+            print("TOOL_CALLS:", getattr(message, "tool_calls", None))
+            print("TOOL_NAME:", getattr(message, "name", None))
         stop_model(self.model)
-        resp_final = result["messages"][-1].content
-        print(f"{YELLOW}{self.model} Respuesta {RESET}: {resp_final}")
 
     def print_bye(self, message="adiós", tipo_color=RED):
         emoji = "👋"

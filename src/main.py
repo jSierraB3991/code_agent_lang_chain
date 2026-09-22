@@ -7,8 +7,8 @@ def main():
     args = process_args()
     stop_model(args.model)
     if args.project != ".":
-        change_path_tool(args.project)
-    agent = Agent(args.model)
+        change_path_tool.invoke(args.project)
+    agent = Agent(args.model, args.thread_id)
     agent.run_user_input()
 
 if __name__ == "__main__":
