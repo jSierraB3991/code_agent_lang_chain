@@ -1,15 +1,21 @@
 import unittest
 import os
-from src.tools.file_system.change_path import change_path_tool
+import shutil
+from tools.file_system.change_path import change_path_tool
 
 class TestChangePath(unittest.TestCase):
     def setUp(self):
         # Guardar la ruta inicial para volver a ella después de cada test
         self.initial_path = os.path.abspath(os.getcwd())
+        self.test_dir = "src"
+        if not os.path.exists(self.test_dir):
+            os.makedirs(self.test_dir)
 
     def tearDown(self):
         # Asegurarse de volver a la ruta original después de cada test
         os.chdir(self.initial_path)
+        if os.path.exists(self.test_dir):
+            shutil.rmtree(self.test_dir)
 
     def test_change_path_to_src_and_back(self):
         # Caso 1: Cambiar a ./src
